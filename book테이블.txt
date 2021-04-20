@@ -1,0 +1,13 @@
+create table book(
+bookID number(20) primary key, /*1*/
+bookName varchar2(2048), /*2*/
+bookAuthor varchar2(100), /*3*/
+price number(20), /*4*/
+bookContent varchar2(2048), /*5*/
+bookAuthorItd varchar2(2048),  /*6*/
+CEOcomment varchar2(2048), /*7*/
+publisher varchar2(30),  /*8*/
+category varchar2(30),  /*9*/
+stock number(5), /*10*/
+filename varchar2(60) /*11*/
+);
