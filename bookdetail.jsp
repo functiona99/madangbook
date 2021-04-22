@@ -11,29 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-#product_section {
-	overflow: hidden;
-	width: 960px;
-	margin: 0 auto;
-	margin-top: 5px;
-}
 
-#product_section>#product_article>img {
-	overflow: hidden;
-	float: left;
-	padding: 5px;
-	padding-top: 0px;
-	width: 200px;
-}
-
-#product_section>#product_aside {
-	display: block;
-	overflow: hidden;
-	float: right;
-	width: 750px;
-}
-</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -85,13 +63,15 @@
 		</div>
 	</div>
 	<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%">
+	</div>
+	
+	
 		<div class="col-md-6">
 			<h1>${bk.bookName}</h1>
-			<p>${bk.bookContent}</p>
-			<img src="upload/${bk.filename}" alt="" , width="80%"> <img
-				src="${imageUrl }/${pro.pImage}" alt="" , width="80%">
-			<!-- 사진 넣기 -->
-
+			
 			<p>
 				<b>저자 : </b>${bk.bookAuthor}</p>
 			<p>
@@ -110,20 +90,34 @@
 				<b>작가 소개 : </b>${bk.bookAuthorItd}</p>
 				<form name="addForm" action="addBookCart.jsp?proId=${bk.bookID}"
 				method="post">
-				<a href="#" class="btn btn-info" onclick="addToCart()">상품주문&raquo;</a>
+				<a href="addBookCart" class="btn btn-info" onclick="addToCart()">상품주문&raquo;</a>
 				<!-- onclick : 버튼 클릭 후 이동 -->
 				<a href="cartBook.jsp" class="btn btn-warning">장바구니&raquo;</a> 
 				<a href="Books.jsp" class="btn btn-secondary">상품목록&raquo;</a>
 			</form>
-			<p>-------------------------------------------</p>
+			</div>
+		
+			</div>
+			<hr>
 			<h4>책 상세 페이지</h4>
-			<p>
-				<b>책 소개: </b>${bk.bookContent}</p>
-			<p>
-			<p>
-				<b>작가 소개 : </b>${bk.bookAuthorItd}</p>
-			<p>
 			
+				<b>책 소개: </b>${bk.bookContent}
+			<b>작가 소개 : </b>${bk.bookAuthorItd}
+			
+			<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+		<p>
+		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
+		<p>
+		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
+		<p>
+		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
+		<p>
+		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
+		<p>
+		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
+	</div>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />
