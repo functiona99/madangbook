@@ -1,60 +1,64 @@
-package bookshop;
+package book;
 
 public class Book {
-	private int bookID; //1 책 아이디
-	private String bookName; //2 책 제목
-	private String bookAuthor; //3 저자
-	private int price; //4 가격
-	private String bookContent; //5 책 내용
-	private String bookAuthorItd; //6 작가소개
-	private String CEOcomment; //7 책방지기 코멘트
-	private String publisher; //8 출판사
-	private String category; //9 카테고리
-	private int stock; //10 수량
-	private String filename; //11 파일 올리기
+	private String bookID;
+	private String bookName;
+	private String bookAuthor;
+	private int price;
+	private String bookContent;
+	private String bookauthorItd;
+	private String ceoComment;
+	private String publisher;
+	private String category;
+	private String filename;
+	private int quantity;
 	
 	public Book() {}
-	
-	public Book(int bookID, String bookName, String bookAuthor, int price, 
-				String bookContent, String bookAuthorItd, String CEOcomment, String publisher, 
-				String category, int stock) {
-		super();
-		this.bookID = bookID; //1
-		this.bookName = bookName; //2
-		this.bookAuthor = bookAuthor; //3
-		this.price = price; //4
-		this.bookContent = bookContent; //5
-		this.bookAuthorItd = bookAuthorItd; //6
-		this.CEOcomment = CEOcomment; //7
-		this.publisher = publisher; //8
-		this.category = category; //9
-		this.stock = stock; //10
-				
-	}
-	
-	public Book(int bookID, String bookName, String bookAuthor, int price, 
-			String bookConetent, String bookAuthorItd, String CEOcomment, String publisher, 
-			String category, int stock, String filename) {
-	super();
-	this.bookID = bookID; //1
-	this.bookName = bookName; //2
-	this.bookAuthor = bookAuthor; //3
-	this.price = price; //4
-	this.bookContent = bookContent; //5
-	this.bookAuthorItd = bookAuthorItd; //6
-	this.CEOcomment = CEOcomment; //7
-	this.publisher = publisher; //8
-	this.category = category; //9
-	this.stock = stock; //10
-	this.filename = filename; //11
-}
-	
 
-	public int getBookID() {
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public Book(String bookID, String bookName, String bookAuthor, int price, String bookContent, String bookauthorItd,
+			String ceoComment, String publisher, String category, String filename, int quantity) {
+		super();
+		this.bookID = bookID;
+		this.bookName = bookName;
+		this.bookAuthor = bookAuthor;
+		this.price = price;
+		this.bookContent = bookContent;
+		this.bookauthorItd = bookauthorItd;
+		this.ceoComment = ceoComment;
+		this.publisher = publisher;
+		this.category = category;
+		this.filename = filename;
+		this.quantity = quantity;
+	}
+
+	public Book(String bookID, String bookName, String bookAuthor, int price, String bookContent, String bookauthorItd,
+			String ceoComment, String publisher, String category, String filename) {
+		super();
+		this.bookID = bookID;
+		this.bookName = bookName;
+		this.bookAuthor = bookAuthor;
+		this.price = price;
+		this.bookContent = bookContent;
+		this.bookauthorItd = bookauthorItd;
+		this.ceoComment = ceoComment;
+		this.publisher = publisher;
+		this.category = category;
+		this.filename = filename;
+	}
+
+	public String getBookID() {
 		return bookID;
 	}
 
-	public void setBookID(int bookID) {
+	public void setBookID(String bookID) {
 		this.bookID = bookID;
 	}
 
@@ -90,20 +94,20 @@ public class Book {
 		this.bookContent = bookContent;
 	}
 
-	public String getBookAuthorItd() {
-		return bookAuthorItd;
+	public String getBookauthorItd() {
+		return bookauthorItd;
 	}
 
-	public void setBookAuthorItd(String bookAuthorItd) {
-		this.bookAuthorItd = bookAuthorItd;
+	public void setBookauthorItd(String bookauthorItd) {
+		this.bookauthorItd = bookauthorItd;
 	}
 
-	public String getCEOcomment() {
-		return CEOcomment;
+	public String getCeoComment() {
+		return ceoComment;
 	}
 
-	public void setCEOcomment(String cEOcomment) {
-		CEOcomment = cEOcomment;
+	public void setCeoComment(String ceoComment) {
+		this.ceoComment = ceoComment;
 	}
 
 	public String getPublisher() {
@@ -122,14 +126,6 @@ public class Book {
 		this.category = category;
 	}
 
-	public int getStock() {
-		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
 	public String getFilename() {
 		return filename;
 	}
@@ -138,6 +134,9 @@ public class Book {
 		this.filename = filename;
 	}
 
+	
+
+	
 	
 	
 }

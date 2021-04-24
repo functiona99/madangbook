@@ -78,9 +78,9 @@ sessionId = (String)session.getAttribute(book.getBookID());
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                 <li class="active"><a href="main.jsp">메인</a></li>
+                 <li><a href="main.jsp">메인</a></li>
                 <!-- active로 현재 페이지가 메인페이지임을 알림 -->
-               	<li><a href="products.jsp">상품</a></li>
+               	<li class="active"><a href="products.jsp">상품</a></li>
             </ul>
             <%
     		//접속하기 버튼은 로그인을 하지 않은 사람만 보일 수 있게 if 걸음
