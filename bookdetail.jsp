@@ -11,7 +11,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -27,34 +26,27 @@
 <body>
 
 	<jsp:useBean id="book" class="bookshop.Book" scope="request" />
-
-
 	<%
 		InitialContext ic = new InitialContext();
 			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
 			Connection conn = ds.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("select * from Book where bookID=1");
-			/* pstmt.setInt(1, Integer.parseInt(request.getParameter("bookID"))); */
+
+			PreparedStatement pstmt = conn.prepareStatement("select * from Book where bookID=?");
+			pstmt.setString(1, request.getParameter("bookID"));
 			ResultSet rs = pstmt.executeQuery(); //executeUpdate() : 수행결과로 Int타입의 값을 반환, select 구문 제외한 다른 구문 수행 시 사용
-			while(rs.next()){
-					book.setBookID(rs.getInt(1));
-					book.setBookName(rs.getString(2));
-					book.setBookAuthor(rs.getString(3));
-					book.setPrice(rs.getInt(4));
-					book.setBookContent(rs.getString(5));
-					book.setBookAuthorItd(rs.getString(6));
-					book.setCEOcomment(rs.getString(7));
-					book.setPublisher(rs.getString(8));
-					book.setCategory(rs.getString(9));
-					book.setStock(rs.getInt(10));
-					book.setFilename(rs.getString(11));
-			}
-			//out.print(rs.getString(11)); //이미지 
-			rs.close();
+			rs.next();
+			book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), 
+					   rs.getInt(4), rs.getString(5), rs.getString(6),
+					   rs.getString(7), rs.getString(8), rs.getString(9),
+					   rs.getInt(10), rs.getString(11));
+			out.print(rs.getString(11)); //이미지 
+				rs.close();
 			pstmt.close();
 			conn.close();
+			
 			String imageUrl = request.getContextPath()+"/upload";
-	%> 
+			
+	%>
 	<c:set var="bk" value="<%=book%>" />
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron">
@@ -63,15 +55,15 @@
 		</div>
 	</div>
 	<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%">
-	</div>
-	
-	
 		<div class="col-md-6">
 			<h1>${bk.bookName}</h1>
-			
+			<p>${bk.bookContent}</p>
+			<img src="upload/${bk.filename}" alt="" , width="80%">
+			<%-- <img src="${imageUrl }/${pro.pImage}" alt="" , width="80%"> --%>
+			<!-- 사진 넣기 -->
+			<p>
+				<b>카테고리 : </b><span class="badge badge-danger">${bk.category}</span>
+			</p>
 			<p>
 				<b>저자 : </b>${bk.bookAuthor}</p>
 			<p>
@@ -88,36 +80,11 @@
 				<b>수량 : </b>${bk.stock}</p>
 			<p>
 				<b>작가 소개 : </b>${bk.bookAuthorItd}</p>
-				<form name="addForm" action="addBookCart.jsp?proId=${bk.bookID}"
-				method="post">
-				<a href="addBookCart" class="btn btn-info" onclick="addToCart()">상품주문&raquo;</a>
-				<!-- onclick : 버튼 클릭 후 이동 -->
-				<a href="cartBook.jsp" class="btn btn-warning">장바구니&raquo;</a> 
-				<a href="Books.jsp" class="btn btn-secondary">상품목록&raquo;</a>
-			</form>
-			</div>
-		
-			</div>
-			<hr>
-			<h4>책 상세 페이지</h4>
-			
-				<b>책 소개: </b>${bk.bookContent}
-			<b>작가 소개 : </b>${bk.bookAuthorItd}
-			
-			<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-		<p>
-		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
-		<p>
-		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
-		<p>
-		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
-		<p>
-		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
-		<p>
-		<img alt="ddd" src="<%=imageUrl%>/${bk.filename}" width="80%"></p>
-	</div>
+			<form name="addForm" action="addBookCart.jsp?proId=${bk.bookID}" method="post">
+		<a href="#" class="btn btn-info" onclick="addToCart()">상품주문&raquo;</a>  <!-- onclick : 버튼 클릭 후 이동 -->
+		<a href="cartBook.jsp" class="btn btn-warning">장바구니&raquo;</a>
+		<a href="Books.jsp" class="btn btn-secondary">상품목록&raquo;</a>
+		</form>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />
